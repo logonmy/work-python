@@ -1,0 +1,12 @@
+[INFO  - 2018-11-12T03:21:45.147Z] GhostDriver - Main - running on port 51728
+[INFO  - 2018-11-12T03:21:49.611Z] Session [17bce370-e62a-11e8-8f1e-ab232084acb2] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36","webSecurityEnabled":true}
+[INFO  - 2018-11-12T03:21:49.611Z] Session [17bce370-e62a-11e8-8f1e-ab232084acb2] - page.customHeaders:  - {"User-Agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36"}
+[INFO  - 2018-11-12T03:21:49.611Z] Session [17bce370-e62a-11e8-8f1e-ab232084acb2] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-7-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"},"phantomjs.page.customHeaders.User-Agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36","phantomjs.page.settings.userAgent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36"}
+[INFO  - 2018-11-12T03:21:49.611Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 17bce370-e62a-11e8-8f1e-ab232084acb2
+[ERROR - 2018-11-12T03:21:55.202Z] Session [17bce370-e62a-11e8-8f1e-ab232084acb2] - page.onError - msg: Attempting to configurable attribute of unconfigurable property.
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-11-12T03:21:55.202Z] Session [17bce370-e62a-11e8-8f1e-ab232084acb2] - page.onError - stack:
+  send (http://assets.growingio.com/2.1/gio.js:1)
+
+  phantomjs://platform/console++.js:263 in error

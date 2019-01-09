@@ -1,0 +1,22 @@
+CREATE TABLE `rh_err_tc_task` (
+  `delivery_type` char(50) NOT NULL COMMENT '关联原始表字段',
+  `addrabb` varchar(1000) NOT NULL COMMENT '原始地址or标准地址',
+  `addr_src` char(10) DEFAULT NULL COMMENT '精品城市-标准地址：“yizhi”，精品城市-原始地址：“DDS_AUTO”；其他城市-标准地址：“MC_Addr”，其他城市-原始地址：“NM_Addr”',
+  `addr_groupid` char(100) DEFAULT NULL COMMENT '%group_group%_%city_code%',
+  `addr_dept` char(50) DEFAULT NULL COMMENT 'zccode',
+  `addr_team_code` char(50) DEFAULT NULL COMMENT 'rh_tc',
+  `longitude` char(50) DEFAULT NULL COMMENT 'rh_x, ts_x, bq54_x',
+  `latitude` char(50) DEFAULT NULL COMMENT 'rh_y, ts_y ,bq54_y',
+  `priority` char(2) DEFAULT NULL,
+  `scount` int(11) DEFAULT '0' COMMENT 'addr_total_freq',
+  `ztask_id` char(50) DEFAULT NULL COMMENT 'h_TC_ citycode_task1_日期,示例：rh_tc_372_task1_20181213',
+  `ck_tag` char(1) DEFAULT NULL COMMENT '0正确, 1不在范围, 2 地址错误, 4 地址已拆除',
+  `is_finish` char(1) DEFAULT NULL COMMENT 'N 未完成，Y已完成',
+  `ck_result` char(1) DEFAULT NULL COMMENT '原始地址addr_groupid=标准地址addr_groupid (1)原始地址ck_tc = 标准地址 ck_tc：源表 ck_result = “1”，否则 “2”',
+  `ck_tc` char(50) DEFAULT NULL COMMENT '核实后TC',
+  `ck_x` char(50) DEFAULT NULL COMMENT '经度	',
+  `ck_y` char(50) DEFAULT NULL COMMENT '纬度',
+  `recycle_tm` char(20) DEFAULT NULL COMMENT '回收时间（入库时间 年月日 时分秒）',
+  KEY `delivery_type` (`delivery_type`),
+  KEY `addr_groupid` (`addr_groupid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

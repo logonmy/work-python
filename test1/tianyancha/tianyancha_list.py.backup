@@ -1,0 +1,164 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import requests
+from bs4 import BeautifulSoup
+from pymongo import MongoClient
+import time, os, re, json
+import traceback
+
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36'
+    , 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    , 'Accept-Encoding': 'gzip, deflate, br'
+    , 'Host': 'www.tianyancha.com'
+}
+db = None
+table = None
+succ_cnt = 0
+font_url_pattern = re.compile('https://static.tianyancha.com/fonts-styles/css/\w+/?\w+/font.css')
+
+def get_header(ref=None):
+    if ref:
+        headers['Referer'] = ref
+    return headers
+
+
+def get_list(url, is_first_page=True, fail_cnt=0):
+    time.sleep(0.5)
+    log('get_list: ' + url)
+    try:
+        resp = requests.get(url, headers=get_header())
+        if resp.url.find('login') != -1 or not resp.text:
+            log('get_list fail:' + url)
+            change_ip()
+            if fail_cnt < 3:
+                fail_cnt += 1
+                get_list(url, is_first_page, fail_cnt)
+        else:
+            soup = BeautifulSoup(resp.text, 'lxml')
+            parse_list(url, soup)
+            if is_first_page:
+                next_page_urls = soup.select('a.num', limit=5)
+                if next_page_urls and len(next_page_urls) > 1:
+                    for next_page in next_page_urls[1:]:
+                        next_page_url = next_page.attrs['href']
+                        get_list(next_page_url, False, 0)
+    except:
+        log('get_list fail:' + url)
+
+def parse_list(url, soup):
+    try:
+        save_item = {'pageUrl': url, 'timestamp': now_time()}
+        result = []
+        for item in soup.select("div.search-result-single"):
+            info = dict()
+            info['GongSiMingChen'] = get_text(item.select_one(".content > .header > a > text"))
+            info['GongSiLianJie'] = get_attr(item.select_one(".content > .header > a"), 'href')
+            info['CunXuZhuangTai'] = get_text(item.select_one(".content > .header .tag"))
+            info['FaRen'] = get_text(item.select_one(".content > .info > div > a"))
+
+            spans = item.select('.content > .info > div > span')
+            info['ZhuCeZiBen'] = get_text(spans, 0)
+            info['ZhuCeShiJian'] = get_text(spans, 1)
+
+            info['QiTaXinXi'] = get_text(item.select_one(".match.text-ellipsis"))
+            info['DiQu'] = get_text(item.select_one(".site"))
+            info['FenZhi'] = get_text(item.select_one(".score-num"))
+            result.append(info)
+        save_item['result'] = result
+        save_item['fontUrl'] = get_by_index(re.findall(font_url_pattern, ''.join([t.attrs['href'] for t in soup.select('link')])), 0)
+        save_to_db(save_item)
+    except Exception,e:
+        traceback.print_exc()
+        log("parse_list fail: " + str(e))
+
+
+def get_by_index(l, i):
+    if type(l) is list and len(l) > i:
+        return l[i]
+    else:
+        return None
+
+
+def get_text(tag, index=0):
+    if tag:
+        if type(tag) is list:
+            if len(tag) > index:
+                return tag[index].text
+            else:
+                return str(tag)
+        else:
+            return tag.text
+    return None
+
+
+def get_attr(tag, attr):
+    return tag.attrs[attr] if tag else None
+
+
+def now_time():
+    return int(round(time.time() * 1000))
+
+
+def save_to_db(item):
+    while 1:
+        try:
+            db[table].save(item)
+            break
+        except Exception, e:
+            traceback.print_exc()
+            log("db error " + str(e))
+            init_db()
+            time.sleep(30)
+
+
+def init_db():
+    while 1:
+        try:
+            conn = MongoClient('140.143.94.171', 27017)
+            global db
+            db = conn.crawler
+            db.authenticate('mongodbcrawler', 'Shantianci56')
+            break
+        except:
+            change_ip()
+
+
+def change_ip():
+    os.system('D:\\node-changeip\\swip.bat')
+    time.sleep(20)
+
+
+log_file = open('tianyancha_list.log', 'a')
+def log(msg):
+    timestr = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    print timestr + ": " + str(msg)
+    log_file.write(timestr + ": " + str(msg) + "\n")
+
+
+def flush_log():
+    log_file.flush()
+    log_file.close()
+
+
+if __name__ == '__main__':
+    init_db()
+    table = 'tianyancha_wuhan_1'
+    url_file = 'xxx'
+    try:
+        while True:
+            with open(url_file) as uf:
+                for line in uf.readlines():
+                    link = line.strip()
+                    while 1:
+                        try:
+                            if link and db[table].count({'pageUrl': link}) == 0:
+                                get_list(link)
+                            break
+                        except:
+                            init_db()
+    except Exception, e:
+        traceback.print_exc()
+        log("program exception " + str(e))
+        flush_log()
