@@ -30,7 +30,7 @@
 一张栅格图片以当前分辨率被分割成了N多的规则小块，每一个规则小块就是一个像素，栅格图像的清晰度会随着放大比例的增大而降低，
 如图1所示。
 
-![avatar](shange.png)
+![avatar](img/shange.png)
 
 
 GIS系统的栅格数据格式有很多种，其中常用的有.jpg、.png、.tif等。我们在一些工作任务中会利用一些电子地图下载器来获取研究
@@ -42,7 +42,7 @@ GIS系统的栅格数据格式有很多种，其中常用的有.jpg、.png、.ti
 
 ### 矢量数据
 GIS中的矢量数据代表地图图形的各离散点平面坐标（x,y）的有序集合。如下图举例说明。
-![avatar](shiliang.png)
+![avatar](img/shiliang.png)
 
 上图中就是GIS中基本的点、线、面模型，也就是最常见的矢量数据。与删格数据相比，矢量数据最大的特点就是放大不失真，可以任意
 放大或缩小图形而不会影响出图的清晰度。矢量数据中每个元素都带有属性值，这些属性值使得该元素具有业务相关的能力。我们在TransCAD
@@ -142,8 +142,8 @@ XDR). The specific binary encoding (NDR or XDR) used for a geometry representati
 tag that precedes the serialized bytes. The only difference between the two encodings of geometry is one of byte
 order, the XDR encoding is Big Endian, and the NDR encoding is Little Endian.
 
-![avatar](geometric_types_1.png)
-![avatar](geometric_types_2.png)
+![avatar](img/geometric_types_1.png)
+![avatar](img/geometric_types_2.png)
 
 #### 数值编码方式
 - XDR (Big Endian) encoding of numeric types  
@@ -206,7 +206,7 @@ WKBPolygon {
     uint32 numRings;
     LinearRing rings[numRings]}
 ```
-![avatar](wkb_ex1.png)
+![avatar](img/wkb_ex1.png)
 
 #### 用WKT表示坐标系
 - 投影坐标系表示
@@ -307,7 +307,7 @@ Spatial supports the object-relational model for representing geometries. This m
 
 #### 查询模型
 The two operations are referred to as primary and secondary filter operations.
-![avatar](query.gif)
+![avatar](img/query.gif)
 - The **primary filter** permits fast selection of candidate records to pass along to the secondary filter. 
 The primary filter compares geometry approximations to reduce computation complexity and is considered a lower-cost filter.
  Because the primary filter compares geometric approximations, it returns a superset of the exact result set.
@@ -318,12 +318,12 @@ The secondary filter yields an accurate answer to a spatial query. The secondary
 
 #### 空间索引
 - R-Tree Indexing
-![avatar](rt_mbr.gif)
-![avatar](rt_tree.gif)
+![avatar](img/rt_mbr.gif)
+![avatar](img/rt_tree.gif)
 - R-Tree Quality
 
 #### 简单示例
-![avatar](cola_mkt.gif)
+![avatar](img/cola_mkt.gif)
 
 ``` 
 -- Create a table 
@@ -518,8 +518,8 @@ TIN : triangulated irregular networks (不规则三角网)
 ### Querying Spatial Data
 Spatial uses a two-tier query model with primary and secondary filter operations to resolve spatial queries and spatial joins
 #### Spatial Query
-![avatar](query_mbrs.gif)
-![avatar](query_window.gif)
+![avatar](img/query_mbrs.gif)
+![avatar](img/query_window.gif)
 
 ##### Primary Filter Operator
 The primary filter uses the index data to determine only if a set of candidate object pairs may interact. Specifically, the primary filter checks to see if the MBRs of the candidate objects interact, not whether the objects themselves interact

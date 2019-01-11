@@ -54,7 +54,7 @@
 #### GeoTools Library
 > The GeoTools library forms a software “stack” with each jar building on the ideas and concepts defined in the previous one.
 
-![avatar](geotools.png)
+![avatar](img/geotools.png)
 
 The maven tool can calculate the jars you need, please see the Eclipse or Netbeans quickstart for an example use.
 Module|Purpose
@@ -257,7 +257,7 @@ MapServer是一个用来在网上展现动态空间地图的流行的开源项�
 - WEB/HTTP Server
 > 当用户的浏览器命中时，提供HTML页面。你需要一个工作的Web（HTTP）服务器。例如Apache或者Microsoft的IIS，它们在你安装的MapServer所在的机器上。
 
-![avatar](mapserver.png)
+![avatar](img/mapserver.png)
 
 ### geoserver
 #### Overview
@@ -294,13 +294,13 @@ Protocol (HTTP) Distributed Computing Platform (DCP).
 The purpose of the mandatory GetCapabilities operation is to obtain service metadata, which is a machinereadable
 (and human-readable) description of the server’s information content and acceptable request parameter
 values
-![avatar](wms_GetCapabilities.png)
+![avatar](img/wms_GetCapabilities.png)
 
 ##### GetMap (mandatory) 
 The GetMap operation returns a map. Upon receiving a GetMap request, a WMS shall either satisfy the request
 or issue a service exception. 
 
-![avatar](wms_GetMap.png)
+![avatar](img/wms_GetMap.png)
 
 ##### GetFeatureInfo (optional) 
 GetFeatureInfo is an optional operation. It is only supported for those Layers for which the attribute queryable="1"
@@ -311,10 +311,17 @@ receives a GetFeatureInfo request but does not support it.
 The GetFeatureInfo operation is designed to provide clients of a WMS with more information about features in the
 pictures of maps that were returned by previous Map requests. 
 
-![avatar](wms_GetFeatureInfo.png)
+![avatar](img/wms_GetFeatureInfo.png)
 
-### wfs Web Feature Service 
+### wfs Web Feature(特征要素) Service 
+The WFS specification defines interfaces for describing data manipulation operations of geographic features.
+ Data manipulation operations include the ability to:
+- get or query features based on spatial and non-spatial constraints
+- create a new feature instance
+- delete a feature instance 
+- update a feature instance
 
+### tms  Tiled(瓦片) Map Service
 
 ### wmts  Web Map Tile(瓦片) Service 
 The goal of providing a WMTS enabled service is to be performance oriented and
@@ -328,10 +335,208 @@ multiple tiles to fill a single view.
 
 The purpose of a WMTS service is to serve maps divided in individual tiles
 
+note:
+
+    TMS有OSGeo（OpenSourceGeospatial Fundation）发布，WMTS有OGC（Open Geospatial Consortium）发布，2009两者签订兼容协议。
+    WMTS的支持更广泛一下。
+
+    OSGeo的目标开源地理软件之间的规范合作。
+
+    OGC的目标是制定地理标准。
+
+    TMS只支持Restful，WMTS支持KVP、Restfu、SOAP
 
 ### wps  Web Processing Service
-### wcs Web Coverage Service
-### tms 
+The OGC Web Processing Service (WPS) Interface Standard provides rules for standardizing how inputs and outputs (requests and responses) 
+for invoking geospatial processing services, such as polygon overlay, as a web service. 
+
+The WPS standard defines how a client can request the execution of a process, and how the output from the process is handled.  
+
+It defines an interface that facilitates the publishing of geospatial processes and clients’ discovery of and binding to those processes. 
+
+WPS defines three operations:
+- GetCapabilities returns service-level metadata
+- DescribeProcess returns a description of a process including its inputs and outputs
+- Execute returns the output(s) of a process
+
+WPS has the following properties:
+- Inputs can be web-accessible URLs or embedded in the request.
+- Outputs can be stored as web-accessible URLs or embedded in the response.
+- For a single output such as a GIF image, WPS can return the output directly, without any XML wrapper.
+- It supports multiple input and output formats.
+- It supports long-running processes.
+- It supports SOAP and WSDL.
+    
+### wcs Web Coverage(覆盖) Service
+A Web Coverage Service (WCS) offers multi-dimensional coverage data for access over the Internet. 
+
+![avatar](img/wcs-spec-hierarchy.png)
+![avatar](img/WCS_trim_and_slice_operations.png)
+
+
+# 访问发布的GIS数据
+了解开发组件openlayers/leaflet
+
+## openlayers
+> OpenLayers是一个用于开发WebGIS客户端的JavaScript包。OpenLayers 支持的地图来源包括Google Maps、Yahoo、 Map、微软Virtual Earth 等，
+用户还可以用简单的图片地图作为背景图，与其他的图层在OpenLayers 中进行叠加，在这一方面OpenLayers提供了非常多的选择。除此之外，
+OpenLayers实现访问地理空间数据的方法都符合行业标准。OpenLayers 支持Open GIS 协会制定的WMS（Web Mapping Service）和
+WFS（Web Feature Service）等网络服务规范，可以通过远程服务的方式，将以OGC 服务形式发布的地图数据加载到基于浏览器的OpenLayers 
+客户端中进行显示。OpenLayers采用面向对象方式开发，并使用来自Prototype.js和Rico中的一些组件
+
+### Basic Concepts
+#### Map
+
+The core component of OpenLayers is the map (ol/Map). It is rendered to a target container(e.g. a div element on the
+ web page that contains the map). All map properties can either be configured at construction time, or by using setter methods, e.g. setTarget().
+```html
+<div id="map" style="width: 100%, height: 400px"></div>
+```
+```javascript
+import Map from 'ol/Map';
+
+var map = new Map({target: 'map'});
+```
+
+#### View
+
+The map is not responsible for things like center, zoom level and projection of the map. Instead, these are properties of a ol/View instance.
+```javascript
+import View from 'ol/View';
+
+map.setView(new View({
+  center: [0, 0],
+  zoom: 2
+}));
+```
+A View also has a projection(投影坐标系). The projection determines the coordinate system of the center and the units for map resolution calculations. 
+If not specified (like in the above snippet), the default projection is Spherical Mercator (EPSG:3857), with meters as map units.
+
+#### Source
+
+o get remote data for a layer, OpenLayers uses ol/source/Source subclasses. These are available for free and commercial 
+map tile services like OpenStreetMap or Bing, for OGC sources like WMS or WMTS, and for vector data in formats like GeoJSON or KML.
+```javascript
+import OSM from 'ol/source/OSM';
+
+var osmSource = OSM();
+```
+#### Layer
+
+A layer is a visual representation of data from a source. OpenLayers has four basic types of layers:
+
+- ol/layer/Tile - Renders sources that provide tiled images in grids that are organized by zoom levels for specific resolutions.
+- ol/layer/Image - Renders sources that provide map images at arbitrary extents and resolutions.
+- ol/layer/Vector - Renders vector data client-side.
+- ol/layer/VectorTile - Renders data that is provided as vector tiles.
+```javascript
+import TileLayer from 'ol/layer/Tile';
+
+var osmLayer = new TileLayer({source: osmSource});
+map.addLayer(osmLayer);
+```
+
+#### Putting it all together
+
+The above snippets can be combined into a single script that renders a map with a single tile layer:
+```javascript
+import Map from 'ol/Map';
+import View from 'ol/View';
+import OSM from 'ol/source/OSM';
+import TileLayer from 'ol/source/Tile';
+
+new Map({
+  layers: [
+    new TileLayer({source: new OSM()})
+  ],
+  view: new View({
+    center: [0, 0],
+    zoom: 2
+  }),
+  target: 'map'
+});
+```
+
+## leaflet
+> Leaflet is the leading open-source JavaScript library for mobile-friendly interactive maps. Weighing just about 38 KB of JS,
+ it has all the mapping features most developers ever need.
+
+example:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>leaflet</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+	   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+	   crossorigin=""/>
+	<!-- Make sure you put this AFTER Leaflet's CSS -->
+	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+	   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+	   crossorigin=""></script>
+	<style type="text/css">
+		#mapid { height: 800px; }
+	</style>
+</head>
+<body>
+ <div id="mapid"></div>
+
+</body>
+<script type="text/javascript">
+	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+	
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery ?  <a href="https://www.mapbox.com/">Mapbox</a>',
+		maxZoom: 18,
+		id: 'mapbox.streets',
+		accessToken: 'pk.eyJ1IjoieXVhbmp1bmxpdSIsImEiOiJjanFveTMzaDMwOHNsM3hxcDBwaWZsOHk3In0.nkVv4FeaMzCZCf4XPbpoQw'
+	}).addTo(mymap);
+	
+	var marker = L.marker([51.5, -0.09]).addTo(mymap);
+	
+	var circle = L.circle([51.508, -0.11], {
+		color: 'red',
+		fillColor: '#f03',
+		fillOpacity: 0.5,
+		radius: 500
+	}).addTo(mymap);
+
+	var polygon = L.polygon([
+		[51.509, -0.08],
+		[51.503, -0.06],
+		[51.51, -0.047]
+	]).addTo(mymap);
+	
+	marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+	circle.bindPopup("I am a circle.");
+	polygon.bindPopup("I am a polygon.");
+	
+	var popup = L.popup()
+    .setLatLng([51.5, -0.09])
+    .setContent("I am a standalone popup.")
+    .openOn(mymap);
+
+	var popup = L.popup();
+
+	function onMapClick(e) {
+		popup
+			.setLatLng(e.latlng)
+			.setContent("You clicked the map at " + e.latlng.toString())
+			.openOn(mymap);
+	}
+
+	mymap.on('click', onMapClick);
+
+</script>
+</html>
+```
+
+# 常用GIS操作软件
+## qgis
+## arcgis
+## envi
+## globalmapper
 
 "1、原始GIS数据访问方法，了解开发组件gdal/geotools/
    pyshp等
@@ -354,6 +559,10 @@ The purpose of a WMTS service is to serve maps divided in individual tiles
 [pyshp](https://github.com/GeospatialPython/pyshp)  
 [mapserver](https://mapserver.org/)  
 [geoserver](http://geoserver.org/)  
-[arcgis serve](http://enterprise.arcgis.com/zh-cn/)  
+[arcgis server](http://enterprise.arcgis.com/zh-cn/)  
 [ogc](http://www.opengeospatial.org/)    
-[ogc standard](http://www.opengeospatial.org/docs/as)
+[ogc standard](http://www.opengeospatial.org/docs/as)  
+[openlayers](http://openlayers.org/)  
+[leaflet](https://leafletjs.com/)  
+[leaflet中文文档](https://blog.csdn.net/qq_35726305/article/details/80485266)  
+

@@ -2,10 +2,48 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://D:/Program Files/python27/Lib/site-packages/scrapy/http/response/text.py" line="108" />
-    <bookmark url="file://$PROJECT_DIR$/md/part2.md" line="593" />
+    <bookmark url="file://$PROJECT_DIR$/notes/gis/part2.md" line="593" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d4a2315-af50-443d-b536-39ab46a27287" name="Default Changelist" comment="" />
+    <list default="true" id="8d4a2315-af50-443d-b536-39ab46a27287" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notes/gis/example/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notes/gis/other.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notes/other/bat.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/cola_mkt.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/cola_mkt.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/example/baidu_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/example/baidu_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/example/pyshp_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/example/pyshp_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/example/test.dbf" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/example/test.dbf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/example/test.shp" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/example/test.shp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/example/test.shx" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/example/test.shx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/example/tile1.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/example/tile1.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/gcs.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/gcs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/gcs2pcs.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/gcs2pcs.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/geom_types.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/geom_types.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/geometric_types_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/geometric_types_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/geometric_types_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/geometric_types_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/geotools.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/geotools.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/mapserver.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/mapserver.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/part1.md" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/part1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/part2.md" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/part2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/part3.md" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/part3.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/part4.md" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/part4.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/pcs2gcs.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/pcs2gcs.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/pyshp.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/pyshp.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/query.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/query.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/query_mbrs.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/query_mbrs.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/query_window.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/query_window.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/rt_mbr.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/rt_mbr.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/rt_tree.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/rt_tree.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/shange.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/shange.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/shiliang.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/shiliang.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/wkb_ex1.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/wkb_ex1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/wms_GetCapabilities.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/wms_GetCapabilities.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/wms_GetFeatureInfo.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/wms_GetFeatureInfo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/wms_GetMap.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/wms_GetMap.png" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,17 +125,17 @@
     <session id="-1425735746">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="22" />
+          <entry key="project.closed" value="23" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.126" value="1" />
           <entry key="project.open.time.27" value="1" />
           <entry key="project.open.time.43" value="1" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="7" />
-          <entry key="project.open.time.8" value="6" />
+          <entry key="project.open.time.8" value="7" />
           <entry key="project.open.time.9" value="3" />
           <entry key="project.open.time.94" value="1" />
-          <entry key="project.opened" value="24" />
+          <entry key="project.opened" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -117,10 +155,10 @@
           <entry key="js" value="1" />
           <entry key="json" value="7" />
           <entry key="log" value="17" />
-          <entry key="md" value="31" />
+          <entry key="md" value="35" />
           <entry key="origin_column" value="2" />
           <entry key="png" value="1" />
-          <entry key="py" value="518" />
+          <entry key="py" value="520" />
           <entry key="pyi" value="13" />
           <entry key="rh_err_bm_task" value="1" />
           <entry key="sql" value="5" />
@@ -141,9 +179,9 @@
           <entry key="Ini" value="2" />
           <entry key="JSON" value="7" />
           <entry key="JavaScript" value="1" />
-          <entry key="Markdown" value="31" />
+          <entry key="Markdown" value="35" />
           <entry key="PLAIN_TEXT" value="93" />
-          <entry key="Python" value="518" />
+          <entry key="Python" value="520" />
           <entry key="PythonStub" value="13" />
           <entry key="SQL" value="5" />
           <entry key="XML" value="3" />
@@ -158,7 +196,7 @@
           <entry key="dummy" value="82" />
           <entry key="ini" value="77" />
           <entry key="js" value="24" />
-          <entry key="md" value="3048" />
+          <entry key="md" value="3662" />
           <entry key="origin_column" value="82" />
           <entry key="py" value="80767" />
           <entry key="sql" value="3" />
@@ -172,7 +210,7 @@
           <entry key="HTML" value="10" />
           <entry key="Ini" value="77" />
           <entry key="JavaScript" value="35" />
-          <entry key="Markdown" value="3027" />
+          <entry key="Markdown" value="3641" />
           <entry key="PLAIN_TEXT" value="1146" />
           <entry key="Python" value="88204" />
           <entry key="RegExp" value="1" />
@@ -186,7 +224,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rh/import_origin_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
+            <state relative-caret-position="3059">
               <caret line="136" column="19" selection-start-line="136" selection-start-column="19" selection-end-line="136" selection-end-column="19" />
               <folding>
                 <element signature="e#46#57#0" expanded="true" />
@@ -197,18 +235,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rh/config.ini">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rh/util.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
+            <state relative-caret-position="1012">
               <caret line="46" column="39" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
               <folding>
                 <marker date="1546936556300" expanded="true" signature="950:969" ph="..." />
@@ -219,31 +248,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rh/recycle_tc_task.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="12" selection-start-line="12" selection-end-line="19" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rh/update_tc_result.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1334">
+            <state relative-caret-position="1311">
               <caret line="58" column="41" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="41" />
-              <folding>
-                <element signature="e#46#57#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rh/create_bm_task.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="851">
-              <caret line="92" column="34" selection-start-line="66" selection-start-column="4" selection-end-line="92" selection-end-column="34" />
               <folding>
                 <element signature="e#46#57#0" expanded="true" />
               </folding>
@@ -254,8 +262,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rh/simple_http_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="100" column="29" lean-forward="true" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
+            <state relative-caret-position="2024">
+              <caret line="100" column="29" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
               <folding>
                 <element signature="e#47#56#0" expanded="true" />
                 <marker date="1547004870545" expanded="true" signature="402:649" ph="..." />
@@ -274,12 +282,45 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/md/part3.md">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/notes/gis/part3.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="111">
-                <caret line="56" column="23" lean-forward="true" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
+              <first_editor relative-caret-position="7429">
+                <caret line="323" column="17" selection-start-line="323" selection-start-column="17" selection-end-line="323" selection-end-column="17" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/geo_util.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/notes/other/bat.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="414">
+                <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/notes/gis/part4.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="414">
+                <caret line="18" column="29" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="29" />
               </first_editor>
               <second_editor />
             </state>
@@ -289,7 +330,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-676127/exceptions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
+            <state relative-caret-position="1817">
               <caret line="79" column="23" selection-start-line="79" selection-start-column="23" selection-end-line="79" selection-end-column="23" />
             </state>
           </provider>
@@ -308,7 +349,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>COMPANY_</find>
       <find>_</find>
       <find>save_to_db</find>
       <find>change_ip</find>
@@ -338,6 +378,7 @@
       <find>is_b</find>
       <find>charset</find>
       <find>param['op']</find>
+      <find>avatar</find>
     </findStrings>
     <replaceStrings>
       <replace>:</replace>
@@ -350,15 +391,16 @@
     </replaceStrings>
     <dirStrings>
       <dir>D:\Program Files\python27\Lib\site-packages\scrapy</dir>
-      <dir>E:\python\pc</dir>
       <dir>E:\python\pc\test1</dir>
+      <dir>E:\python\pc</dir>
     </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/scrapy_test/tmsf_spider.py" />
-        <option value="$PROJECT_DIR$/test1/tmsf_spider.py" />
         <option value="$PROJECT_DIR$/scrapy_test/shentong_spider.py" />
         <option value="$PROJECT_DIR$/utils/geo_util.py" />
         <option value="$PROJECT_DIR$/scrapy_test/bendibao_spider.py" />
@@ -386,7 +428,6 @@
         <option value="$PROJECT_DIR$/md/part4.md" />
         <option value="$PROJECT_DIR$/md/example/pyshp_test.py" />
         <option value="$PROJECT_DIR$/md/example/baidu_test.py" />
-        <option value="$PROJECT_DIR$/md/part3.md" />
         <option value="$PROJECT_DIR$/rh/origin_column" />
         <option value="$PROJECT_DIR$/rh/csv_column" />
         <option value="$PROJECT_DIR$/rh/table_column" />
@@ -408,6 +449,9 @@
         <option value="$PROJECT_DIR$/test1/data_process.py" />
         <option value="$PROJECT_DIR$/rh/simple_http_server.py" />
         <option value="$PROJECT_DIR$/test1/tianyancha/tianyancha_detail.py" />
+        <option value="$PROJECT_DIR$/md/other.md" />
+        <option value="$PROJECT_DIR$/md/part3.md" />
+        <option value="$PROJECT_DIR$/notes/other/bat.md" />
       </list>
     </option>
   </component>
@@ -423,6 +467,7 @@
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <showMembers ProjectPane="true" />
@@ -435,6 +480,11 @@
             <path>
               <item name="pc" type="b2602c69:ProjectViewProjectNode" />
               <item name="pc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pc" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -468,19 +518,19 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\python\pc\test1\otherspider" />
-      <recent name="E:\python\pc\md" />
-      <recent name="E:\python\pc" />
-      <recent name="E:\python\pc\test1\dianping" />
-      <recent name="E:\python\pc\test1\font" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\python\pc\rh" />
       <recent name="E:\python\pc\md" />
       <recent name="E:\python\pc\scrapy_test" />
       <recent name="E:\python\pc\scrapy-test" />
       <recent name="E:\python\pc\resource" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\python\pc\notes" />
+      <recent name="E:\python\pc\md\img" />
+      <recent name="E:\python\pc\md" />
+      <recent name="E:\python\pc\test1\otherspider" />
+      <recent name="E:\python\pc" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -655,18 +705,18 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.16792929" visible="true" weight="0.12526652" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.16792929" visible="true" weight="0.11673774" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info id="Structure" order="2" sideWeight="0.8320707" weight="0.14658849" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32910052" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947917" weight="0.35102925" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8336887" visible="true" weight="0.13867822" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8336887" weight="0.22125813" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.51570964" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.34019503" />
@@ -1046,7 +1096,7 @@
           <option name="timeStamp" value="527" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/md/example/baidu_test.py</url>
+          <url>file://$PROJECT_DIR$/notes/gis/example/baidu_test.py</url>
           <line>7</line>
           <option name="timeStamp" value="535" />
         </line-breakpoint>
@@ -1212,35 +1262,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/rh/csv_column" />
-    <entry file="file://$PROJECT_DIR$/rh/table_column" />
-    <entry file="file://D:/Program Files/python27/Lib/site-packages/selenium/webdriver/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test1/tianyancha/change_ip_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="22" column="32" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="22" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test1/tianyancha/tianyancha_list.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="194" selection-start-line="194" selection-end-line="194" />
-          <folding>
-            <element signature="e#47#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-676127/_mysql.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90">
-          <caret line="444" column="8" selection-start-line="444" selection-start-column="8" selection-end-line="444" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Program Files/python27/Lib/site-packages/pkg_resources/extern/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
@@ -1304,9 +1325,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
           <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-          <folding>
-            <element signature="e#46#56#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1327,11 +1345,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rh/kaos.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1449" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/rh/kaos.txt" />
     <entry file="file://D:/Program Files/python27/Lib/ntpath.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
@@ -1339,23 +1353,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rh/temp/temp.txt_">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rh/temp/temp.txt__">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rh/temp/temp.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="3" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/rh/temp/temp.txt_" />
+    <entry file="file://$PROJECT_DIR$/rh/temp/temp.txt__" />
+    <entry file="file://$PROJECT_DIR$/rh/temp/temp.txt" />
     <entry file="file://D:/Program Files/python27/Lib/site-packages/MySQLdb/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
@@ -1409,11 +1409,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="229" selection-start-line="229" selection-end-line="229" />
-          <folding>
-            <element signature="e#8385#10445#0" />
-            <element signature="e#10487#10617#0" />
-            <element signature="e#10716#10820#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1421,11 +1416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="11" selection-start-line="11" selection-end-line="15" selection-end-column="15" />
-          <folding>
-            <element signature="e#46#57#0" expanded="true" />
-            <marker date="1546940445818" expanded="true" signature="145:146" ph="..." />
-            <marker date="1546940445818" expanded="true" signature="190:195" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1443,12 +1433,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rh/temp/__">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rh/temp/___">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/rh/temp/__" />
+    <entry file="file://$PROJECT_DIR$/rh/temp/___" />
     <entry file="file://$PROJECT_DIR$/rh/config.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -1491,16 +1477,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-676127/exceptions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="79" column="23" selection-start-line="79" selection-start-column="23" selection-end-line="79" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rh/temp/源数据.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/rh/temp/源数据.csv" />
     <entry file="file://$PROJECT_DIR$/test1/data_transfer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="74">
@@ -1511,19 +1488,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rh/update_tc_result.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1334">
-          <caret line="58" column="41" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="41" />
-          <folding>
-            <element signature="e#46#57#0" expanded="true" />
-          </folding>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/threading.pyi">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notes/gis/part1.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="92">
+            <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notes/gis/other.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="46">
+            <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rh/import_origin_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
+        <state relative-caret-position="3059">
           <caret line="136" column="19" selection-start-line="136" selection-start-column="19" selection-end-line="136" selection-end-column="19" />
           <folding>
             <element signature="e#46#57#0" expanded="true" />
@@ -1534,7 +1524,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rh/util.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
+        <state relative-caret-position="1012">
           <caret line="46" column="39" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
           <folding>
             <marker date="1546936556300" expanded="true" signature="950:969" ph="..." />
@@ -1543,10 +1533,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/rh/update_tc_result.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1311">
+          <caret line="58" column="41" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="41" />
+          <folding>
+            <element signature="e#46#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/rh/simple_http_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="100" column="29" lean-forward="true" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
+        <state relative-caret-position="2024">
+          <caret line="100" column="29" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
           <folding>
             <element signature="e#47#56#0" expanded="true" />
             <marker date="1547004870545" expanded="true" signature="402:649" ph="..." />
@@ -1555,9 +1555,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/threading.pyi">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/test1/tianyancha/tianyancha_detail.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -1565,11 +1562,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/md/part3.md">
+    <entry file="file://$PROJECT_DIR$/notes/gis/part3.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="111">
-            <caret line="56" column="23" lean-forward="true" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
+          <first_editor relative-caret-position="7429">
+            <caret line="323" column="17" selection-start-line="323" selection-start-column="17" selection-end-line="323" selection-end-column="17" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notes/gis/part4.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="414">
+            <caret line="18" column="29" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="29" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-676127/exceptions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1817">
+          <caret line="79" column="23" selection-start-line="79" selection-start-column="23" selection-end-line="79" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notes/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/geo_util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notes/other/bat.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="414">
+            <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
           </first_editor>
           <second_editor />
         </state>

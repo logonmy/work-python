@@ -32,15 +32,15 @@
 ### 经纬度GCS与平面直角坐标系PCS转换
 **平面直角坐标系转经纬度PCS->GCS**
 
-![avatar](pcs2gcs.jpg)
+![avatar](img/pcs2gcs.jpg)
 
 **经纬度转平面直角坐标系GCS->PCS**
 
-![avatar](gcs2pcs.jpg)
+![avatar](img/gcs2pcs.jpg)
 
 ## 4、常用坐标系
 ### 经纬度坐标系(GCS-地理坐标系)
-![avatar](gcs.png)
+![avatar](img/gcs.png)
 
 
 #### 参心坐标系：
