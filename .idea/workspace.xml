@@ -5,45 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/notes/gis/part2.md" line="593" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d4a2315-af50-443d-b536-39ab46a27287" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notes/gis/example/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notes/gis/other.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notes/other/bat.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/cola_mkt.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/cola_mkt.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/example/baidu_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/example/baidu_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/example/pyshp_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/example/pyshp_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/example/test.dbf" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/example/test.dbf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/example/test.shp" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/example/test.shp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/example/test.shx" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/example/test.shx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/example/tile1.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/example/tile1.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/gcs.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/gcs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/gcs2pcs.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/gcs2pcs.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/geom_types.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/geom_types.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/geometric_types_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/geometric_types_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/geometric_types_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/geometric_types_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/geotools.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/geotools.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/mapserver.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/mapserver.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/part1.md" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/part1.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/part2.md" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/part2.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/part3.md" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/part3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/part4.md" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/part4.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/pcs2gcs.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/pcs2gcs.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/pyshp.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/pyshp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/query.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/query.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/query_mbrs.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/query_mbrs.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/query_window.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/query_window.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/rt_mbr.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/rt_mbr.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/rt_tree.gif" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/rt_tree.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/shange.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/shange.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/shiliang.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/shiliang.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/wkb_ex1.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/wkb_ex1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/wms_GetCapabilities.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/wms_GetCapabilities.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/wms_GetFeatureInfo.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/wms_GetFeatureInfo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/md/wms_GetMap.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/gis/img/wms_GetMap.png" afterDir="false" />
-    </list>
+    <list default="true" id="8d4a2315-af50-443d-b536-39ab46a27287" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +87,7 @@
     <session id="-1425735746">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="23" />
+          <entry key="project.closed" value="24" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.126" value="1" />
           <entry key="project.open.time.27" value="1" />
