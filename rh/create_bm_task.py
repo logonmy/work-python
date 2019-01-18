@@ -41,7 +41,7 @@ def update_origin(gids, db, cursor):
 
 query_sql = """
     SELECT 
-    gid, norm_address, rh_zc, city_code, rh_tc, rh_x, ts_x, bq54_x, rh_y, ts_y ,bq54_y, keyword, group_group, STANDARD
+    gid, norm_address, rh_zc, zc_code, city_code, rh_tc, rh_x, ts_x, bq54_x, rh_y, ts_y ,bq54_y, keyword, group_group, STANDARD
     FROM
         rh_err_origin
     WHERE
@@ -60,8 +60,7 @@ query_sql = """
 def main(begin_day, end_day):
     global config
     config = Util.get_config()
-    db = MySqlUtil(config.get('mysql.host'), config.get('mysql.user'),
-                   config.get('mysql.passwd'), config.get('mysql.db'))
+    db = MySqlUtil(config)
     log('begin...')
     curdate = time.strftime('%Y%m%d', time.localtime())
     try:
@@ -79,9 +78,9 @@ def main(begin_day, end_day):
                 x = Util.first_non_blank(r['rh_x'], r['ts_x'], r['bq54_x'])
                 y = Util.first_non_blank(r['rh_y'], r['ts_y'], r['bq54_y'])
 
-                items.append((r['gid'], r['norm_address'], r['rh_zc'], '3', r['city_code'], r['rh_tc'], '', x, y,
+                items.append((r['gid'], r['norm_address'], r['zc_code'], '3', r['city_code'], r['rh_tc'], '', x, y,
                              r['keyword'], r['group_group'], task_id, task_id, '', '原始地址'))
-                items.append((r['group_group'], r['STANDARD'], r['rh_zc'], '1', r['city_code'], r['rh_tc'], '', x, y,
+                items.append((r['group_group'], r['STANDARD'], r['zc_code'], '1', r['city_code'], r['rh_tc'], '', x, y,
                               r['keyword'], '', task_id, task_id, r['group_group'], '标准地址'))
             insert_records(items, db, cursor)
             update_origin(gids, db, cursor)
@@ -89,8 +88,9 @@ def main(begin_day, end_day):
             log("没有查询到任务数据!!!")
             raise Exception("没有查询到任务数据!!!")
     except Exception, e:
-        log("error>>>" + e.message)
-        raise Exception(e.message)
+        msg = e.message if e.message else str(e.args)
+        log("error>>>" + msg)
+        raise Exception(msg)
     finally:
         log('finish...')
         db.close_conn()

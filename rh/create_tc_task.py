@@ -11,7 +11,7 @@ jingpin_citys = ['755', '020', '751', '763', '021', '010', '571', '025', '852', 
 def insert_records(records, db, cursor):
     insert_sql = """
         insert rh_err_tc_task(addrabb, addr_src, addr_groupid, addr_dept, addr_team_code, longitude, latitude,
-        priority, scount, ztask_id, delivery_type) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        priority_level, scount, ztask_id, delivery_type) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
     batch_insert_cnt = config.get_int('batch_insert_cnt', 10)
     batch_commit_cnt = config.get_int('batch_commit_cnt', 1000)
@@ -61,8 +61,7 @@ query_sql = """
 def main(begin_day, end_day):
     global config
     config = Util.get_config()
-    db = MySqlUtil(config.get('mysql.host'), config.get('mysql.user'),
-                   config.get('mysql.passwd'), config.get('mysql.db'))
+    db = MySqlUtil(config)
     log('begin...')
     curdate = time.strftime('%Y%m%d', time.localtime())
     try:
@@ -80,7 +79,7 @@ def main(begin_day, end_day):
                 is_jingpin_city = r['city_code'] in jingpin_citys
                 x = Util.first_non_blank(r['rh_x'], r['ts_x'], r['bq54_x'])
                 y = Util.first_non_blank(r['rh_y'], r['ts_y'], r['bq54_y'])
-                priority_level = '1' if r['addr_total_freq'] > 1 else '2'
+                priority_level = '1' if r['addr_total_freq'] > '1' else '2'
 
                 # 原始地址
                 items.append((r['norm_address'], 'DDS_AUTO' if is_jingpin_city else 'NM_Addr', r['group_group'],
@@ -96,8 +95,9 @@ def main(begin_day, end_day):
             log("没有查询到任务数据!!!")
             raise Exception("没有查询到任务数据!!!")
     except Exception, e:
-        log("error>>>" + e.message)
-        raise Exception(e.message)
+        msg = e.message if e.message else str(e.args)
+        log("error>>>" + msg)
+        raise Exception(msg)
     finally:
         log('finish...')
         db.close_conn()

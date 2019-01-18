@@ -35,8 +35,7 @@ query_sql = """
 def main(task_day):
     global config
     config = Util.get_config()
-    db = MySqlUtil(config.get('mysql.host'), config.get('mysql.user'),
-                   config.get('mysql.passwd'), config.get('mysql.db'))
+    db = MySqlUtil(config)
     log('begin...')
     recycle_tm = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
     try:
@@ -58,8 +57,9 @@ def main(task_day):
             log("没有查询到可以更新的数据!!!")
             raise Exception("没有查询到可以更新的数据!!!")
     except Exception, e:
-        log("error>>>" + e.message)
-        raise Exception(e.message)
+        msg = e.message if e.message else str(e.args)
+        log("error>>>" + msg)
+        raise Exception(msg)
     finally:
         log('finish...')
         db.close_conn()

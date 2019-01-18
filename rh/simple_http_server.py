@@ -15,6 +15,7 @@ import create_tc_task
 import recycle_tc_task
 import update_tc_result
 
+
 try:
     from cStringIO import StringIO
 except ImportError:
@@ -199,62 +200,9 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
     def response_html(self, path):
         f = StringIO()
-        f.write('<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">')
-        f.write("<html>\n<title>简易程序</title>\n")
-        f.write("<body>\n")
-        f.write("<div style='border: 5px solid green; margin: 50px; padding: 50px;'>\n")
-        f.write("<h1>任务源数据入库</h1>\n")
-        f.write("<form ENCTYPE=\"multipart/form-data\" method=\"post\">")
-        f.write("<input name=\"op\" type=\"hidden\" value=\"1\"/>")
-        f.write("<input name=\"file\" type=\"file\"/>")
-        f.write("<input type=\"submit\" value=\"导入\" onclick=\"body.style.cursor='wait'\"/></form>\n")
-        f.write("</div>\n")
-
-        f.write("<div style='border: 5px solid green; margin: 50px; padding: 50px;'>\n")
-        f.write("<h1>别名核实任务</h1>\n")
-        f.write("<hr>\n")
-        f.write("<h2>制作BM任务</h2>\n")
-        f.write("<form ENCTYPE=\"multipart/form-data\" method=\"post\">")
-        f.write("<input name=\"op\" type=\"hidden\" value=\"2\"/>")
-        f.write("开始日期：<input type=\"date\" name=\"begin_day\">\n")
-        f.write("截止日期：<input type=\"date\" name=\"end_day\">\n")
-        f.write("<input type=\"submit\" value=\"执行\" onclick=\"body.style.cursor='wait'\"/>")
-        f.write("</form>")
-
-        f.write("<hr>\n")
-        f.write("<h2>回收结果入库</h2>\n")
-        f.write("<form ENCTYPE=\"multipart/form-data\" method=\"post\">")
-        f.write("<input name=\"op\" type=\"hidden\" value=\"3\"/>")
-        f.write("<input name=\"file\" type=\"file\"/>")
-        f.write("<input type=\"submit\" value=\"导入\" onclick=\"body.style.cursor='wait'\"/></form>\n")
-        f.write("</div>\n")
-
-        f.write("<div style='border: 5px solid green; margin: 50px; padding: 50px;'>\n")
-        f.write("<h1>TC核实任务</h1>\n")
-        f.write("<hr>\n")
-        f.write("<h2>制作TC任务</h2>\n")
-        f.write("<form ENCTYPE=\"multipart/form-data\" method=\"post\">")
-        f.write("<input name=\"op\" type=\"hidden\" value=\"4\"/>")
-        f.write("开始日期：<input type=\"date\" name=\"begin_day\">\n")
-        f.write("截止日期：<input type=\"date\" name=\"end_day\">\n")
-        f.write("<input type=\"submit\" value=\"执行\" onclick=\"body.style.cursor='wait'\"/>")
-        f.write("</form>")
-
-        f.write("<hr>\n")
-        f.write("<h2>回收结果入库</h2>\n")
-        f.write("<form ENCTYPE=\"multipart/form-data\" method=\"post\">")
-        f.write("<input name=\"op\" type=\"hidden\" value=\"5\"/>")
-        f.write("<input name=\"file\" type=\"file\"/>")
-        f.write("<input type=\"submit\" value=\"导入\" onclick=\"body.style.cursor='wait'\"/></form>\n")
-
-        f.write("<hr>\n")
-        f.write("<h2>更新ck_result</h2>\n")
-        f.write("<form ENCTYPE=\"multipart/form-data\" method=\"post\">")
-        f.write("<input name=\"op\" type=\"hidden\" value=\"6\"/>")
-        f.write("任务生成日期：<input type=\"date\" name=\"task_day\">\n")
-        f.write("<input type=\"submit\" value=\"更新\" onclick=\"body.style.cursor='wait'\"/></form>\n")
-        f.write("</div>\n")
-        f.write("</body>\n</html>\n")
+        with open('web/index.html') as html_file:
+            for line in html_file.readlines():
+                f.write(line)
         length = f.tell()
         f.seek(0)
         self.send_response(200)

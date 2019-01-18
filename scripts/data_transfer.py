@@ -43,24 +43,28 @@ class DataTransfer:
         for table in self.tables:
             skip = 0
             logger.info('begin transfer table ' + table)
-            if self.target_db[table].count() > 0:
+            target_table = table if 'tianyancha' not in table else table.replace('tianyancha', 'task_1822')
+            if self.target_db[target_table].count() > 0:
                 logger.warning('target table is exists, continue ...')
                 continue
             count = self.src_db[table].count()
             logger.info('num count is ' + str(count))
+            success = True
             while skip < count:
                 rows = list(self.src_db[table].find({}).sort("_id").skip(skip).limit(batch))
                 try:
-                    self.target_db[table].insert_many(rows)
+                    self.target_db[target_table].insert_many(rows)
                 except BulkWriteError, e:
                     logger.error('now the skip is ' + str(skip))
                     logger.error(e.details)
-                    self.target_db[table].drop()
+                    self.target_db[target_table].drop()
+                    success = False
                     break
                 skip += batch
-            logger.info('delete src table ' + table)
-            self.src_db[table].drop()
-            logger.info("finish table " + table)
+            if success:
+                logger.info('delete src table ' + table)
+                self.src_db[table].drop()
+                logger.info("finish table " + table)
 
 
 if __name__ == '__main__':

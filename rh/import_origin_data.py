@@ -10,6 +10,7 @@ config = None
 
 
 column_map = {
+    'gid': 'gid',
     'waybill_no': 'waybill_no',
     'city_code': 'city_code',
     'province': 'povince',
@@ -35,7 +36,7 @@ column_map = {
     'time_stamp': 'time_stamp',
     'resp_time': 'resp_time',
     'MATCH_ADDR': 'MATCH_ADDR',
-    '_STANDARD': 'STANDARD',
+    'STANDARD': 'STANDARD',
     'SFLAG': 'SFLAG',
     'rh_x': 'rh_x',
     'rh_y': 'rh_y',
@@ -56,54 +57,54 @@ column_map = {
     'rh_tc': 'rh_tc',
     'rh_status': 'rh_status',
     'bq54_tc': 'bq54_tc',
-    'src_log': 'src_log'
+    'src_log': 'src_log',
+    'keyword': 'keyword'
 }
 
 
-def get_insert_sql(table, csv_column_str, column_map, extra_columns):
+def get_insert_sql(table, csv_columns, column_map):
     insert_sql = "insert into " + table
-    print 'csv_column_str: ' + csv_column_str
+    print 'csv_column: ' + str(csv_columns)
     insert_columns_str = ''
     insert_columns_cnt = 0
-    for column in csv_column_str.split(','):
+    _columns = []
+    for column in csv_columns:
+        column = column.strip('"')
         if column in column_map:
             insert_columns_str += "`" + column_map[column] + "`, "
             insert_columns_cnt += 1
+            _columns.append(column)
         else:
-            print '未定义的列名：%s' % column
-    for column in extra_columns:
-        insert_columns_str += "`" + column + "`, "
+            print 'warn: 未定义的列名：%s' % column
+    if 'gid' not in _columns:
+        insert_columns_str += "`gid`, "
         insert_columns_cnt += 1
+    insert_columns_str += "`input_day`, "
+    insert_columns_cnt += 1
     value_str = '%s,' * insert_columns_cnt
     insert_sql += '(' + insert_columns_str[:-2] + ') values (' + value_str[:-1] + ')'
     print 'insert_sql: ' + insert_sql
-    return insert_sql
+    return insert_sql, _columns
 
 
-def get_column_values(line_str, extra_values):
-    col_values = []
-    for col_value in line_str.split(','):
-        col_values.append(col_value if col_value else None)
-    for ev in extra_values:
-        col_values.append(ev)
-    return col_values
-
-
-def insert_records(records, field_limit_size, db, cursor, insert_sql):
+def insert_records(records, columns, db, cursor, insert_sql):
     input_day = time.strftime('%Y%m%d', time.localtime())
     batch_insert_cnt = config.get_int('batch_insert_cnt', 10)
     batch_commit_cnt = config.get_int('batch_commit_cnt', 1000)
     items = []
     begin_time = time.clock()
     for i, fields in enumerate(records):
-        if len(fields) > field_limit_size:
-            log('第%d行数据列数不对，停止插入' % (i + 1))
-            exit()
-        fields.append(uuid.uuid4().get_hex())
-        fields.append(input_day)
-        items.append(tuple(fields))
+        values = [fields.get(k) for k in columns]
+        if 'gid' not in columns:
+            values.append(uuid.uuid4().get_hex())
+        values.append(input_day)
+        items.append(tuple(values))
         if (i + 1) % batch_insert_cnt == 0:
-            cursor.executemany(insert_sql, items)
+            try:
+                cursor.executemany(insert_sql, items)
+            except Exception, e:
+                msg = e.message if e.message else str(e.args)
+                log('insert error in rows from %d to %d, error: %s' % ((i + 1 - batch_insert_cnt), (i + 1), msg))
             items = []
             if (i + 1) % batch_commit_cnt == 0:
                 db.commit()
@@ -137,25 +138,26 @@ def main(origin_file):
     Util.check_file_encoding(origin_file)
     global config
     config = Util.get_config()
-    db = MySqlUtil(config.get('mysql.host'), config.get('mysql.user'),
-                   config.get('mysql.passwd'), config.get('mysql.db'))
+    db = MySqlUtil(config)
     log('begin...')
     try:
         with open(origin_file, 'rb') as csvfile:
-            column_str = csvfile.readline()
-            insert_sql = get_insert_sql('rh_err_origin', column_str.strip(), column_map, ['gid', 'input_day'])
-            records = csv.reader(csvfile, delimiter=',', quotechar='"')
+            csv_reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
+            insert_sql, _column = get_insert_sql('rh_err_origin', csv_reader.fieldnames, column_map)
             cursor = db.get_cursor()
             # 插入数据库
-            insert_records(records, len(column_map), db, cursor, insert_sql)
+            insert_records(csv_reader, _column, db, cursor, insert_sql)
         # 去重
         remove_duplicate(db, cursor)
     except Exception, e:
-        log("error>>>" + e.message)
+        msg = e.message if e.message else str(e.args)
+        log("error>>>" + msg)
+        raise Exception(msg)
     finally:
         log('finish...')
         db.close_conn()
+        Util.remove_file(origin_file)
 
 
 if __name__ == '__main__':
-    main(origin_file=r'E:\work\data\rh\source_test.csv')
+    main(origin_file=r'E:\work\data\rh\source.csv')

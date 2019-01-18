@@ -24,8 +24,7 @@ def main(origin_file):
     Util.check_file_encoding(origin_file)
     global config
     config = Util.get_config()
-    db = MySqlUtil(config.get('mysql.host'), config.get('mysql.user'),
-                   config.get('mysql.passwd'), config.get('mysql.db'))
+    db = MySqlUtil(config)
     recycle_tm = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
     log('begin...')
     try:
@@ -54,10 +53,13 @@ def main(origin_file):
             cursor = db.get_cursor()
             update_task(task_update_items, db, cursor)
     except Exception, e:
-        raise Exception(e.message)
+        msg = e.message if e.message else str(e.args)
+        log("error>>>" + msg)
+        raise Exception(msg)
     finally:
         log('finish...')
         db.close_conn()
+        Util.remove_file(origin_file)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>简易程序</title>
+</head>
+<body>
+<div style='border: 5px solid green; margin: 50px; padding: 50px;'>
+    <h1>任务源数据入库</h1>
+    <form ENCTYPE="multipart/form-data" method="post">
+        <input name="op" type="hidden" value="1"/>
+        <input name="file" type="file"/>
+        <input type="submit" value="导入" onclick="body.style.cursor='wait'"/>
+    </form>
+</div>
+
+<div style='border: 5px solid green; margin: 50px; padding: 50px;'>
+    <h1>别名核实任务</h1>
+    <hr>
+    <h2>制作BM任务</h2>
+    <form ENCTYPE="multipart/form-data" method="post">
+        <input name="op" type="hidden" value="2"/>
+        开始日期：<input type="date" name="begin_day">
+        截止日期：<input type="date" name="end_day">
+        <input type="submit" value="执行" onclick="body.style.cursor='wait'"/>
+    </form>
+
+    <hr>
+    <h2>回收结果入库</h2>
+    <form ENCTYPE="multipart/form-data" method="post">
+        <input name="op" type="hidden" value="3"/>
+        <input name="file" type="file"/>
+        <input type="submit" value="导入" onclick="body.style.cursor='wait'"/></form>
+</div>
+
+<div style='border: 5px solid green; margin: 50px; padding: 50px;'>
+    <h1>TC核实任务</h1>
+    <hr>
+    <h2>制作TC任务</h2>
+    <form ENCTYPE="multipart/form-data" method="post">
+        <input name="op" type="hidden" value="4"/>
+        开始日期：<input type="date" name="begin_day">
+        截止日期：<input type="date" name="end_day">
+        <input type="submit" value="执行" onclick="body.style.cursor='wait'"/>
+    </form>
+
+    <hr>
+    <h2>回收结果入库</h2>
+    <form ENCTYPE="multipart/form-data" method="post">
+        <input name="op" type="hidden" value="5"/>
+        <input name="file" type="file"/>
+        <input type="submit" value="导入" onclick="body.style.cursor='wait'"/>
+    </form>
+
+    <hr>
+    <h2>更新ck_result</h2>
+    <form ENCTYPE="multipart/form-data" method="post">
+        <input name="op" type="hidden" value="6"/>
+        任务生成日期：<input type="date" name="task_day">
+        <input type="submit" value="更新" onclick="body.style.cursor='wait'"/>
+    </form>
+</div>
+</body>
+

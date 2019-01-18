@@ -3,15 +3,16 @@
 import MySQLdb
 import time
 import chardet
+import os
 
 
 class MySqlUtil:
-    def __init__(self, host, user, passwd, db, port=3306):
-        self.host = host
-        self.user = user
-        self.passwd = passwd
-        self.db = db
-        self.port = port
+    def __init__(self, config):
+        self.host = config.get('mysql.host')
+        self.user = config.get('mysql.user')
+        self.passwd = config.get('mysql.passwd')
+        self.db = config.get('mysql.db')
+        self.port = config.get('mysql.port')
         self.conn = None
 
     def _connect(self):
@@ -39,8 +40,12 @@ class Util:
         pass
 
     @staticmethod
+    def remove_file(filepath):
+        os.remove(filepath)
+
+    @staticmethod
     def log(msg):
-        print "%s: %s" % (time.strftime('%Y%m%d %H:%M:%S', time.localtime()), msg)
+        print "%s: %s" % (time.strftime('%Y%m%d %H:%M:%S', time.localtime()), msg.decode('utf-8'))
 
     @staticmethod
     def check_file_encoding(file_path):

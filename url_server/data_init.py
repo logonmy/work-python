@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 
 from util import UrlProcess
+import sys
 
 
-def main():
+def main(fp):
     task_id = 'task_1711_lv0'
     url_process = UrlProcess('118.24.176.167')
-    with open(r'E:\work\data\tyc\xiangchen\tyc_beijing_urls.txt') as f:
+    with open(fp) as f:
         lines = f.readlines()
         line_arr = []
         for line in lines:
@@ -20,4 +21,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) < 2:
+        print 'Usage: data_init.py data_file'
+        exit()
+    main(sys.argv[1])

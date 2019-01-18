@@ -254,10 +254,11 @@ class FetchId:
                     #         # [all_id.add(x+"\n") for x in row['result']['building_id']]
                     #     skip += batch
 
-                    rows = self.db[coll_name].find({'result.point_lng': None}, ['pageUrl'])
+                    rows = self.db[coll_name].find({}, ['result.JobId'])
                     for row in rows:
-                        page_url = row['pageUrl']
-                        all_id.add(page_url[page_url.rfind('=') + 1:]+"\n")
+                        jobid = row['result']['JobId']
+                        # all_id.add(page_url[page_url.rfind('=') + 1:]+"\n")
+                        all_id.add(jobid+"\n")
             sf.writelines(all_id)
             print len(all_id)
 
@@ -289,11 +290,25 @@ class Counter:
         count = 0
         for coll_name in self.db.list_collection_names():
             if coll_name.find(self.table_prefix) == 0:
-                # cnt = self.db[coll_name].count(self.query)
-                cnt = len(self.db[coll_name].distinct("pageUrl"))
+                cnt = self.db[coll_name].count(self.query)
+                # cnt = len(self.db[coll_name].distinct("pageUrl"))
                 print '%s cnt is %d' % (coll_name, cnt)
                 count += cnt
         print 'total cnt is %d ' % count
+
+
+class Rename:
+    def __init__(self, table_prefix, new_table_prefix):
+        self.db = InnerMongo().db
+        self.new_table_prefix = new_table_prefix
+        self.table_prefix = table_prefix
+
+    def process(self):
+        for coll_name in self.db.list_collection_names():
+            if coll_name.find(self.table_prefix) == 0:
+                new_table_name = coll_name.replace(self.table_prefix, self.new_table_prefix)
+                print 'from %s to %s' % (coll_name, new_table_name)
+                self.db[coll_name].rename(new_table_name)
 
 
 if __name__ == '__main__':
@@ -303,8 +318,9 @@ if __name__ == '__main__':
     # TeleCompany(r'E:\work\data\tele\sx_link.txt', r'E:\work\data\tele\sx_url.txt').process()
     # TeleCompany(r'E:\work\data\tele\42_1_2.txt', r'E:\work\data\tele\42_1_2_keyword.txt').process()
     # UrlFetch(['tianyancha_shenzhen_list_07']).fetch()
-    # Search('task_1712_level1', {'pageUrl': 'https://m.ke.com/api/resblock/buildinginfo?id=5212063398101'}).search()
-    # FetchId('task_1712_level1', r'E:\work\data\beike\beike_failed.txt').process()
-    # Counter('task_1712_level1', {'result.point_lng': None}).process()
-    DataTransfer(['task_1711_level1_2019010912']).transfer()
+    # Search('tianyancha_level1_', {'pageUrl': 'https://api9.tianyancha.com/services/v3/t/common/baseinfoV5/26910314'}).search()
+    # FetchId('task_1805_level0', r'E:\work\data\jobs\1805_leipin.txt').process()
+    # Counter('tianyancha_level1', {}).process()
+    DataTransfer(['tianyancha_level1_2019011807']).transfer()
+    # Rename('tianyancha_level', 'task_1822_level').process()
 
