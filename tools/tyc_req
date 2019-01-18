@@ -1,0 +1,65 @@
+----------------------------列表页-------------------------
+GET https://api9.tianyancha.com/services/v3/search/sNorV3/%E4%BA%AC%E4%B8%9C?pageNum=1&pageSize=10&sortType=0 HTTP/1.1
+Host: api9.tianyancha.com
+Content-Type: application/json
+Accept-Encoding: br, gzip, deflate
+Connection: keep-alive
+Accept: */*
+version: TYC-XCX-WX
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114 MicroMessenger/6.7.4(0x1607042c) NetType/WIFI Language/zh_CN
+Authorization: 0###oo34J0Zf1RURy1GlsO8UbYihbmak###1547448666248###f11a5afa0335708c2ab3172e903a4e73
+Referer: https://servicewechat.com/wx9f2867fc22873452/16/page-frame.html
+Accept-Language: zh-cn
+
+GET https://api9.tianyancha.com/services/v3/search/sNorV3/%E5%8C%97%E4%BA%AC%E5%9B%AD%E6%99%AF%E9%A1%BA%E8%BE%BE%E4%BE%BF%E5%88%A9%E5%BA%97?pageNum=1&pageSize=10&sortType=0 HTTP/1.1
+Host: api9.tianyancha.com
+Content-Type: application/json
+Accept-Encoding: br, gzip, deflate
+Connection: keep-alive
+Accept: */*
+version: TYC-XCX-WX
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114 MicroMessenger/6.7.4(0x1607042c) NetType/WIFI Language/zh_CN
+Authorization: 0###oo34J0Zf1RURy1GlsO8UbYihbmak###1547448666248###f11a5afa0335708c2ab3172e903a4e73
+Referer: https://servicewechat.com/wx9f2867fc22873452/16/page-frame.html
+Accept-Language: zh-cn
+
+
+
+----------------------详情页-------------------
+
+GET https://api9.tianyancha.com/services/v3/t/common/baseinfoV5/12562796 HTTP/1.1
+Host: api9.tianyancha.com
+Content-Type: application/json
+Accept-Encoding: br, gzip, deflate
+Connection: keep-alive
+Accept: */*
+version: TYC-XCX-WX
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114 MicroMessenger/6.7.4(0x1607042c) NetType/WIFI Language/zh_CN
+Authorization: 0###oo34J0Zf1RURy1GlsO8UbYihbmak###1547448666248###f11a5afa0335708c2ab3172e903a4e73
+Referer: https://servicewechat.com/wx9f2867fc22873452/16/page-frame.html
+Accept-Language: zh-cn
+
+GET https://api9.tianyancha.com/services/v3/t/common/baseinfoV5/2692065905 HTTP/1.1
+Host: api9.tianyancha.com
+Content-Type: application/json
+Accept-Encoding: br, gzip, deflate
+Connection: keep-alive
+Accept: */*
+version: TYC-XCX-WX
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114 MicroMessenger/6.7.4(0x1607042c) NetType/WIFI Language/zh_CN
+Authorization: 0###oo34J0Zf1RURy1GlsO8UbYihbmak###1547448666248###f11a5afa0335708c2ab3172e903a4e73
+Referer: https://servicewechat.com/wx9f2867fc22873452/16/page-frame.html
+Accept-Language: zh-cn
+
+GET https://api9.tianyancha.com/services/v3/t/common/baseinfoV5/2324078187 HTTP/1.1
+Host: api9.tianyancha.com
+Content-Type: application/json
+Accept-Encoding: br, gzip, deflate
+Connection: keep-alive
+Accept: */*
+version: TYC-XCX-WX
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114 MicroMessenger/6.7.4(0x1607042c) NetType/WIFI Language/zh_CN
+Authorization: 0###oo34J0Zf1RURy1GlsO8UbYihbmak###1547448666248###f11a5afa0335708c2ab3172e903a4e73
+Referer: https://servicewechat.com/wx9f2867fc22873452/16/page-frame.html
+Accept-Language: zh-cn
+
