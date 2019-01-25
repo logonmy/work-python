@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from pymongo.errors import BulkWriteError
 import datetime
 import time
-from dateutil.relativedelta import relativedelta
+import re
 import logging
 
 
@@ -75,15 +75,16 @@ if __name__ == '__main__':
     formatter = logging.Formatter("%(asctime)s - %(levelname)s: %(message)s")
     fh.setFormatter(formatter)
     logger.addHandler(fh)
-
+    pattern = re.compile('\d{10}')
     while True:
         begin = datetime.datetime.now()
-        last_hour = begin - relativedelta(hours=1)
-        last_hour = last_hour.strftime('%Y%m%d%H')
+        cur_hour = begin.strftime('%Y%m%d%H')
         for coll_name in OuterMongo().d_b.list_collection_names():
-            if coll_name[-10:] == str(last_hour):
+            coll_postfix = coll_name[-10:]
+            if pattern.match(coll_postfix) and int(coll_postfix) < int(cur_hour):
                 try:
-                    DataTransfer(coll_name).transfer()
+                    # DataTransfer(coll_name).transfer()
+                    print coll_name
                 except Exception, e:
                     logger.error('exec failed ', exc_info=True)
         now = datetime.datetime.now()

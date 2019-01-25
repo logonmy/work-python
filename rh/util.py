@@ -4,6 +4,9 @@ import MySQLdb
 import time
 import chardet
 import os
+import threading
+import inspect
+import ctypes
 
 
 class MySqlUtil:
@@ -12,7 +15,7 @@ class MySqlUtil:
         self.user = config.get('mysql.user')
         self.passwd = config.get('mysql.passwd')
         self.db = config.get('mysql.db')
-        self.port = config.get('mysql.port')
+        self.port = int(config.get('mysql.port'))
         self.conn = None
 
     def _connect(self):
@@ -86,6 +89,31 @@ class Util:
                 key, value = line.strip().split('=')
                 config_items[key.strip()] = value.strip()
         return Config(config_items)
+
+
+class StoppableThread(threading.Thread):
+    """Thread class with a stop() method. The thread itself has to check
+    regularly for the stopped() condition."""
+
+    def __init__(self, **kwargs):
+        super(StoppableThread, self).__init__(**kwargs)
+        self._stop_event = threading.Event()
+
+    def stop(self):
+        """raises the exception, performs cleanup if needed"""
+        if self.is_alive():
+            tid = ctypes.c_long(self.ident)
+            exctype = SystemExit
+            if not inspect.isclass(exctype):
+                exctype = type(exctype)
+            res = ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, ctypes.py_object(exctype))
+            if res == 0:
+                raise ValueError("invalid thread id")
+            elif res != 1:
+                # """if it returns a number greater than one, you're in trouble,
+                # and you should call it again with exc=NULL to revert the effect"""
+                ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, None)
+                raise SystemError("PyThreadState_SetAsyncExc failed")
 
 
 if __name__ == '__main__':

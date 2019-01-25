@@ -60,6 +60,7 @@ def parse_list(url, content):
         result = []
         for item in soup['data']['companyList']:
             result.append(item['id'])
+            item['timestamp'] = now_time()
             save_to_db(item)
         print 'insert %d urls' % len(result)
         insert_urls(task_sublink_key, result)

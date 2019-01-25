@@ -3,7 +3,7 @@
 import uuid
 import time
 import csv
-from util import MySqlUtil, Util
+from rh.util import MySqlUtil, Util
 
 log = Util.log
 config = None

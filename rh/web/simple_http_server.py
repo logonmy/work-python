@@ -8,13 +8,8 @@ import urllib
 import shutil
 import mimetypes
 import re
-import import_origin_data
-import create_bm_task
-import recycle_bm_task
-import create_tc_task
-import recycle_tc_task
-import update_tc_result
-
+from rh.action import update_tc_result, create_tc_task, create_bm_task, recycle_bm_task, recycle_tc_task, \
+    import_origin_data
 
 try:
     from cStringIO import StringIO

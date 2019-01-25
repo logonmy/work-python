@@ -257,8 +257,11 @@ class FetchId:
                     rows = self.db[coll_name].find({}, ['result.JobId'])
                     for row in rows:
                         jobid = row['result']['JobId']
+                        if not jobid:
+                            print coll_name
+                            continue
                         # all_id.add(page_url[page_url.rfind('=') + 1:]+"\n")
-                        all_id.add(jobid+"\n")
+                        all_id.add(jobid + "\n")
             sf.writelines(all_id)
             print len(all_id)
 
@@ -320,7 +323,9 @@ if __name__ == '__main__':
     # UrlFetch(['tianyancha_shenzhen_list_07']).fetch()
     # Search('tianyancha_level1_', {'pageUrl': 'https://api9.tianyancha.com/services/v3/t/common/baseinfoV5/26910314'}).search()
     # FetchId('task_1805_level0', r'E:\work\data\jobs\1805_leipin.txt').process()
-    # Counter('tianyancha_level1', {}).process()
-    DataTransfer(['tianyancha_level1_2019011807']).transfer()
+    # FetchId('task_1812_level1', r'E:\work\data\jobs\task_1812_level1.txt').process()
+    Counter('task_1812_level1', {}).process()
+    # DataTransfer(['tianyancha_level0_2019012418']).transfer()
     # Rename('tianyancha_level', 'task_1822_level').process()
-
+    # Search('task_1822_level1', {'data.id': 3169068818}).search()
+    # Search('task_1822_level1', {'pageUrl': 'https://api9.tianyancha.com/services/v3/t/common/baseinfoV5/3169068818'}).search()

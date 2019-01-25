@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import time
-from util import MySqlUtil, Util
+from rh.util import MySqlUtil, Util
 
 log = Util.log
 config = None
+jingpin_citys = ['755', '020', '751', '763', '021', '010', '571', '025', '852', '853']
 
 
 def insert_records(records, db, cursor):
     insert_sql = """
-        insert rh_err_bm_task(gid, address, zno_code, type, city_code, team_code, right_tc, x, y, keyword, parent_id, 
-        task_id, task_name, init_id, init_id_source) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        insert rh_err_tc_task(addrabb, addr_src, addr_groupid, addr_dept, addr_team_code, longitude, latitude,
+        priority_level, scount, ztask_id, delivery_type) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
     batch_insert_cnt = config.get_int('batch_insert_cnt', 10)
     batch_commit_cnt = config.get_int('batch_commit_cnt', 1000)
@@ -34,14 +35,14 @@ def insert_records(records, db, cursor):
 
 def update_origin(gids, db, cursor):
     log("update origin table...")
-    update_sql = 'update rh_err_origin set is_task = 1 where gid = %s'
+    update_sql = 'update rh_err_origin set is_task = 2 where gid = %s'
     cursor.executemany(update_sql, gids)
     db.commit()
 
 
 query_sql = """
     SELECT 
-    gid, norm_address, rh_zc, zc_code, city_code, rh_tc, rh_x, ts_x, bq54_x, rh_y, ts_y ,bq54_y, keyword, group_group, STANDARD
+    norm_address, group_group, zc_code, rh_tc, rh_x, ts_x, bq54_x, rh_y, ts_y ,bq54_y, addr_total_freq, city_code, gid
     FROM
         rh_err_origin
     WHERE
@@ -74,14 +75,20 @@ def main(begin_day, end_day):
             gids = []
             for r in rows:
                 gids.append((r['gid'], ))
-                task_id = 'rh_BM_' + r['city_code'] + '_task1_' + curdate
+                task_id = 'rh_' + r['city_code'] + '_task1_' + curdate
+                is_jingpin_city = r['city_code'] in jingpin_citys
                 x = Util.first_non_blank(r['rh_x'], r['ts_x'], r['bq54_x'])
                 y = Util.first_non_blank(r['rh_y'], r['ts_y'], r['bq54_y'])
+                priority_level = '1' if r['addr_total_freq'] > '1' else '2'
 
-                items.append((r['gid'], r['norm_address'], r['zc_code'], '3', r['city_code'], r['rh_tc'], '', x, y,
-                             r['keyword'], r['group_group'], task_id, task_id, '', '原始地址'))
-                items.append((r['group_group'], r['STANDARD'], r['zc_code'], '1', r['city_code'], r['rh_tc'], '', x, y,
-                              r['keyword'], '', task_id, task_id, r['group_group'], '标准地址'))
+                # 原始地址
+                items.append((r['norm_address'], 'DDS_AUTO' if is_jingpin_city else 'NM_Addr', r['group_group'],
+                              r['zc_code'], r['rh_tc'], x, y, priority_level, r['addr_total_freq'], task_id, r['gid']))
+                # 标准地址
+                items.append((r['norm_address'], 'yizhi' if is_jingpin_city else 'MC_Addr',
+                              r['group_group'] + '_' + r['city_code'], r['zc_code'], r['rh_tc'], x, y, priority_level,
+                              r['addr_total_freq'], task_id, r['gid']))
+
             insert_records(items, db, cursor)
             update_origin(gids, db, cursor)
         else:

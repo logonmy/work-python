@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import time
-from util import MySqlUtil, Util
+from rh.util import MySqlUtil, Util
 
 log = Util.log
 config = None
