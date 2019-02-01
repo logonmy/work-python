@@ -300,6 +300,9 @@ class Counter:
         print 'total cnt is %d ' % count
 
 
+import datetime
+
+
 class Rename:
     def __init__(self, table_prefix, new_table_prefix):
         self.db = InnerMongo().db
@@ -307,25 +310,29 @@ class Rename:
         self.table_prefix = table_prefix
 
     def process(self):
+        start_date = datetime.datetime.strptime('2019012518', '%Y%m%d%H')
         for coll_name in self.db.list_collection_names():
             if coll_name.find(self.table_prefix) == 0:
-                new_table_name = coll_name.replace(self.table_prefix, self.new_table_prefix)
+                # new_table_name = coll_name.replace(self.table_prefix, self.new_table_prefix)
+                new_table_name = self.new_table_prefix + '_' + start_date.strftime('%Y%m%d%H')
                 print 'from %s to %s' % (coll_name, new_table_name)
                 self.db[coll_name].rename(new_table_name)
+                start_date += datetime.timedelta(hours=1)
 
 
 if __name__ == '__main__':
     # DataExport('task_1673_2018110611', '区域,名称,地址,等级,规模', ['zone', 'name', 'address', 'level', 'size']).process()
-    # DataExport('task_1672_2018110617', '学校名称,学校地址,学校类别,学校性质,招生范围', ['name', 'address', 'type', 'attr', 'source_range']).process()
+    # DataExport('task_1672_2019013017', '学校名称,所属区,学校地址,学校类别,学校性质,网站,联系电话,招生范围',
+    #            ['name', 'area', 'address', 'type', 'attr', 'website', 'phone', 'source_range']).process()
     # DataExport('bendibao_2018110915', '名称,地址,经度,纬度', ['name', 'address', 'lon', 'lat']).process()
     # TeleCompany(r'E:\work\data\tele\sx_link.txt', r'E:\work\data\tele\sx_url.txt').process()
     # TeleCompany(r'E:\work\data\tele\42_1_2.txt', r'E:\work\data\tele\42_1_2_keyword.txt').process()
     # UrlFetch(['tianyancha_shenzhen_list_07']).fetch()
     # Search('tianyancha_level1_', {'pageUrl': 'https://api9.tianyancha.com/services/v3/t/common/baseinfoV5/26910314'}).search()
     # FetchId('task_1805_level0', r'E:\work\data\jobs\1805_leipin.txt').process()
-    # FetchId('task_1812_level1', r'E:\work\data\jobs\task_1812_level1.txt').process()
-    Counter('task_1812_level1', {}).process()
+    FetchId('task_1812_level1', r'E:\work\data\jobs\task_1812_level1.txt').process()
+    # Counter('task_1812_level1', {}).process()
     # DataTransfer(['tianyancha_level0_2019012418']).transfer()
-    # Rename('tianyancha_level', 'task_1822_level').process()
+    # Rename('task_1812_level0_level1', 'task_1812_level1').process()
     # Search('task_1822_level1', {'data.id': 3169068818}).search()
     # Search('task_1822_level1', {'pageUrl': 'https://api9.tianyancha.com/services/v3/t/common/baseinfoV5/3169068818'}).search()
