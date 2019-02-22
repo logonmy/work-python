@@ -3,6 +3,8 @@
 
 from pymongo import MongoClient
 import re, os
+import datetime
+import urlparse
 
 
 class DuplicateData:
@@ -80,33 +82,38 @@ class DataTransfer:
 
 class UrlFetch:
     def __init__(self, tables):
-        self.db = OuterMongo().db
+        self.db = InnerMongo().db
         self.tables = tables
 
     def fetch(self):
         if type(self.tables) == str:
             self.tables = [self.tables]
         batch = 200
-        for table in self.tables:
-            skip = 0
-            print 'begin fetch table ' + table
-            count = self.db[table].count()
-            if count == 0:
-                continue
-            with open(r'E:\work\data\tyc\\detail\\' + table + '.txt', 'w') as url_file:
+        with open(r'E:\work\data\task_1805.txt', 'w') as url_file:
+            for table in self.tables:
+                skip = 0
+                print 'begin fetch table ' + table
+                count = self.db[table].count()
+                if count == 0:
+                    continue
+
                 while skip < count:
-                    rows = self.db[table].find({}, {'result': 1}).sort("_id").skip(skip).limit(batch)
+                    rows = self.db[table].find({'result.0': {}}, {'pageUrl': 1}).sort("_id").skip(skip).limit(batch)
                     for row in rows:
-                        company = row['result']
-                        if company:
-                            if type(company) == dict:
-                                url_file.write(company['GongSiLianJie'] + '\n')
-                            elif type(company) == list:
-                                url_file.writelines([c['GongSiLianJie'] + '\n' for c in
-                                                     list(filter(lambda _c: _c['GongSiLianJie'] is not None, company))])
-                            else:
-                                print 'invalid type : '
-                                print company
+                        # company = row['result']
+                        # if company:
+                        #     if type(company) == dict:
+                        #         url_file.write(company['GongSiLianJie'] + '\n')
+                        #     elif type(company) == list:
+                        #         url_file.writelines([c['GongSiLianJie'] + '\n' for c in
+                        #                              list(filter(lambda _c: _c['GongSiLianJie'] is not None, company))])
+                        #     else:
+                        #         print 'invalid type : '
+                        #         print company
+                        try:
+                            url_file.write(row['pageUrl'] + '\n')
+                        except:
+                            print row
                     skip += batch
         print "finish ..."
 
@@ -202,7 +209,7 @@ class DataExport:
         reload(sys)
         sys.setdefaultencoding('utf-8')
         self.header = header
-        self.db = OuterMongo().db
+        self.db = InnerMongo().db
         self.table = table
         if not columns or type(columns) != list:
             raise Exception("必须指定列(以数组的方式)")
@@ -231,6 +238,9 @@ class DataExport:
                 skip += batch
 
 
+import urllib
+
+
 class FetchId:
     def __init__(self, table_prefix, save_file):
         self.db = InnerMongo().db
@@ -238,6 +248,8 @@ class FetchId:
         self.table_prefix = table_prefix
 
     def process(self):
+        url_prefix = 'https://restapi.amap.com/v3/geocode/geo?key=0fe0e92d23dc183b6384d51515676b81&s=rsv3&city=%s&callback=jsonp_708870_&' \
+                     'platform=JS&logversion=2.0&sdkversion=1.3&appname=https://www.liepin.com/job/%s.shtml&csid=91A802FE-B695-4DEF-BECA-B3B10CB3F08B&address=%s\n'
         with open(self.save_file, 'w') as sf:
             all_id = set()
             for coll_name in self.db.list_collection_names():
@@ -254,22 +266,24 @@ class FetchId:
                     #         # [all_id.add(x+"\n") for x in row['result']['building_id']]
                     #     skip += batch
 
-                    rows = self.db[coll_name].find({}, ['result.JobId'])
+                    rows = self.db[coll_name].find({}, ['result.JobId', 'result.QiYeDiZhi'])
                     for row in rows:
                         jobid = row['result']['JobId']
-                        if not jobid:
-                            print coll_name
-                            continue
-                        # all_id.add(page_url[page_url.rfind('=') + 1:]+"\n")
-                        all_id.add(jobid + "\n")
-            sf.writelines(all_id)
+                        address = row['result']['QiYeDiZhi']
+                        if jobid and jobid not in all_id and address:
+                            all_id.add(jobid)
+                            url = url_prefix % (
+                                '%E6%B7%B1%E5%9C%B3', str(jobid), urllib.quote(address.encode('utf-8').replace(
+                                    '\xe5\x85\xac\xe5\x8f\xb8\xe5\x9c\xb0\xe5\x9d\x80\xef\xbc\x9a', '')))
+                            sf.write(url)
+                    # return
             print len(all_id)
 
 
 class Search:
     def __init__(self, table_prefix, query):
         self.table_prefix = table_prefix
-        if query == {}:
+        if query is None or query == {}:
             raise Exception("query must not empty")
         self.query = query
         self.db = InnerMongo().db
@@ -300,9 +314,6 @@ class Counter:
         print 'total cnt is %d ' % count
 
 
-import datetime
-
-
 class Rename:
     def __init__(self, table_prefix, new_table_prefix):
         self.db = InnerMongo().db
@@ -310,29 +321,48 @@ class Rename:
         self.table_prefix = table_prefix
 
     def process(self):
-        start_date = datetime.datetime.strptime('2019012518', '%Y%m%d%H')
+        # start_date = datetime.datetime.strptime('2019012518', '%Y%m%d%H')
         for coll_name in self.db.list_collection_names():
             if coll_name.find(self.table_prefix) == 0:
-                # new_table_name = coll_name.replace(self.table_prefix, self.new_table_prefix)
-                new_table_name = self.new_table_prefix + '_' + start_date.strftime('%Y%m%d%H')
+                new_table_name = coll_name.replace(self.table_prefix, self.new_table_prefix)
+                # new_table_name = self.new_table_prefix + '_' + start_date.strftime('%Y%m%d%H')
                 print 'from %s to %s' % (coll_name, new_table_name)
                 self.db[coll_name].rename(new_table_name)
-                start_date += datetime.timedelta(hours=1)
+                # start_date += datetime.timedelta(hours=1)
 
 
 if __name__ == '__main__':
     # DataExport('task_1673_2018110611', '区域,名称,地址,等级,规模', ['zone', 'name', 'address', 'level', 'size']).process()
     # DataExport('task_1672_2019013017', '学校名称,所属区,学校地址,学校类别,学校性质,网站,联系电话,招生范围',
     #            ['name', 'area', 'address', 'type', 'attr', 'website', 'phone', 'source_range']).process()
-    # DataExport('bendibao_2018110915', '名称,地址,经度,纬度', ['name', 'address', 'lon', 'lat']).process()
+    # DataExport('task_1875_level0_2019021517', 'pageUrl', ['pageUrl']).process()
+    # DataExport('task_1875_level0_2019021518', 'pageUrl', ['pageUrl']).process()
     # TeleCompany(r'E:\work\data\tele\sx_link.txt', r'E:\work\data\tele\sx_url.txt').process()
     # TeleCompany(r'E:\work\data\tele\42_1_2.txt', r'E:\work\data\tele\42_1_2_keyword.txt').process()
-    # UrlFetch(['tianyancha_shenzhen_list_07']).fetch()
+    UrlFetch([
+        'task_1805_level1_2019011410',
+        'task_1805_level1_2019011411',
+        'task_1805_level1_2019011412',
+        'task_1805_level1_2019011413',
+        'task_1805_level1_2019011414',
+        'task_1805_level1_2019011415',
+        'task_1805_level1_2019011416',
+        'task_1805_level1_2019021410',
+        'task_1805_level1_2019021411',
+        'task_1805_level1_2019021412',
+        'task_1805_level1_2019021413',
+        'task_1805_level1_2019021414',
+        'task_1805_level1_2019021415',
+        'task_1805_level1_2019021416',
+        'task_1805_level1_2019021512',
+        'task_1805_level1_2019021513',
+        'task_1805_level1_2019021515',
+    ]).fetch()
     # Search('tianyancha_level1_', {'pageUrl': 'https://api9.tianyancha.com/services/v3/t/common/baseinfoV5/26910314'}).search()
     # FetchId('task_1805_level0', r'E:\work\data\jobs\1805_leipin.txt').process()
-    FetchId('task_1812_level1', r'E:\work\data\jobs\task_1812_level1.txt').process()
+    # FetchId('task_1812_level1', r'E:\work\data\jobs\task_1812_level1.txt').process()
     # Counter('task_1812_level1', {}).process()
-    # DataTransfer(['tianyancha_level0_2019012418']).transfer()
-    # Rename('task_1812_level0_level1', 'task_1812_level1').process()
+    # DataTransfer(['task_1872_level2_2019021415']).transfer()
+    # Rename('task_1812_level2', 'task_1812_level1').process()
     # Search('task_1822_level1', {'data.id': 3169068818}).search()
     # Search('task_1822_level1', {'pageUrl': 'https://api9.tianyancha.com/services/v3/t/common/baseinfoV5/3169068818'}).search()

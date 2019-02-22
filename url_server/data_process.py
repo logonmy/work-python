@@ -3,6 +3,7 @@
 
 from util import RedisClient, UrlProcess
 import sys
+import os
 
 
 def del_urls(key, pattern=None):
@@ -36,6 +37,7 @@ def data_init(fp):
                 line_arr = []
         if line_arr:
             url_process.insert_urls(task_id, line_arr)
+    os.remove(fp)
 
 
 def print_usage():

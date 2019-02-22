@@ -1,30 +1,30 @@
 # /usr/bin/env python
 # -*- coding: UTF-8 -*-
-import csv
-import urllib
-import os
 import re
 
-rootdir = u'E:\\work\\data\\tyc\\xiangchen\\'
-url_pattern = '%s'
-# pattern = re.compile(r"[(]\S+[)]")
-
-reader = open(rootdir + "elm_2201_20180604.csv", "r")
-write_file = rootdir + "tyc_changchun_keyword.txt"
-out = open(write_file, 'w')
-all_lines = reader.readlines()
-word_set = set()
-for line in all_lines:
-    try:
-        line = line.decode('gb2312').encode('utf8').strip("\"\r\n")
-    except:
-        continue
-    words = line.split(',')
-    if len(words) == 6 and words[2] not in word_set:
-        word_set.add(words[2])
-        out.write(url_pattern % urllib.quote(words[2]))
-        out.write("\n")
-out.close()
-reader.close()
+p1 = re.compile('^(广东省深圳市|广东省|深圳市|深圳)')
+p2 = re.compile('(（深圳）)?(有限公司|店|有限责任公司|公司|经营部|商行|（普通合伙）|厂|集团)$')
+# ss = [
+#     '深圳市南山区金诚教育文化艺术培训中心',
+#     '广东省深圳市深圳南山深圳区金诚教育文化艺术培训中心',
+#     '广东省深圳南山深圳区金诚教育文化艺术培训中心',
+#     '深圳南山区金诚教育文化艺术培训中心',
+#     '深圳南山区金诚教育文化艺术培训中心有限公司',
+#     '深圳南山区金诚教育文化艺术有限公司培训中心有限公司',
+#     '深圳南山区金诚教育文化艺术有限公司培训中心店',
+#     '深圳南山区金诚教育文化艺术有限公司培训中心店厂',
+# ]
+# for line in ss:
+#     print line.strip(), '---', re.sub(p2, '', re.sub(p1, '', line))
 
 
+with open(r'E:\work\b.csv', 'w') as w:
+    with open(r'E:\work\a.csv') as f:
+        f.readline()
+        for line in f.readlines():
+            # print line
+            f, s, t = line.split('","')
+            # 1.开头的“深圳”，“深圳市”，“广东省”，“广东省深圳市”，
+            # 2结尾的 “有限公司”，“店”，“有限责任公司”，“公司”，“经营部”，“商行”，“（普通合伙）”，“厂”，“集团”
+            # if s[0:2] == '深圳':
+            w.write('%s","%s","%s' % (f, re.sub(p2, '', re.sub(p1, '', s)), t))

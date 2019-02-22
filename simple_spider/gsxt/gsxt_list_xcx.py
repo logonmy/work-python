@@ -9,62 +9,73 @@ import urllib
 import threading
 
 headers = {
-    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114 MicroMessenger/6.7.4(0x1607042c) NetType/WIFI Language/zh_CN'
-    , 'Accept': '*'
+    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobil'
+                  'e/15C114 MicroMessenger/6.7.4(0x1607042c) NetType/WIFI Language/zh_CN'
+    , 'Accept': 'application/json'
     , 'Accept-Language': 'zh-cn'
-    , 'Accept-Encoding': 'gzip, deflate, br'
-    , 'Host': 'api9.tianyancha.com'
-    , 'Referer': 'https://servicewechat.com/wx9f2867fc22873452/16/page-frame.html'
-    , 'version': 'TYC-XCX-WX'
+    , 'Accept-Encoding': 'br, gzip, deflate'
+    , 'Host': 'app.gsxt.gov.cn'
+    , 'Referer': 'https://servicewechat.com/wx5b0ed3b8c0499950/6/page-frame.html'
+    , 'Content-Type': 'application/x-www-form-urlencoded'
+    , 'Connection': 'keep-alive'
 }
 db = None
 table = None
 succ_cnt = 0
-succ_list = []
-failed_list = []
 
 
 def get_header(ref=None):
-    # if ref:
-    #     headers['Referer'] = ref
     return headers
 
 
-def get_list(url, is_first_page=True, fail_cnt=0):
-    log('get_list: ' + url)
+post_data = {
+    'conditions': '{"excep_tab":"0","ill_tab":"0","area":"0","cStatus":"0","xzxk":"0","xzcf":"0","dydj":"0"}'
+    , 'sourceType': 'W'
+    , 'searchword': ''
+}
+
+
+def get_list(url, searchword, is_first_page=True, fail_cnt=0):
+    log('get_list: %s %s' % (url, searchword))
     while 1:
         try:
-            resp = requests.get(url, headers=get_header(), timeout=120)
+            post_data['searchword'] = searchword
+            resp = requests.post(url, headers=get_header(), data=post_data, timeout=120)
             break
         except Exception, e:
             print e
             change_ip()
-    if not resp.text or '"state":"ok"' not in resp.text:
-        log('get_list fail:' + url)
+    if not resp.text or '"status":200' not in resp.text:
+        log('get_list fail:' + searchword)
         change_ip()
         if fail_cnt < 3:
-            fail_cnt += 1
-            get_list(url, is_first_page, fail_cnt)
+            get_list(url, searchword, is_first_page, fail_cnt + 1)
         else:
-            failed_list.append(url.strip(list_url_prefix))
+            failed_list.add(searchword)
     else:
-        succ_list.append(url.strip(list_url_prefix))
-        parse_list(url, resp.text)
+        succ_list.add(searchword)
+        totalpage = parse_list(resp.text)
+        if totalpage > 1 and is_first_page:
+            for i in range(1, totalpage):
+                get_list(re.sub('search-(\d+)', lambda g: 'search-' + str(int(g.group(1)) + i), url), searchword, False)
 
 
-def parse_list(url, content):
+def parse_list(content):
     try:
         soup = json.loads(content)
         result = []
-        for item in soup['data']['companyList']:
-            result.append(item['id'])
+        data_result = soup['data']['result']
+        for item in data_result['data']:
+            result.append('%s&%s&%s' % (item['pripid'], item['nodeNum'], item['entType']))
             item['timestamp'] = now_time()
             save_to_db(item)
         print 'insert %d urls' % len(result)
         insert_urls(task_sublink_key, result)
+        return data_result['totalPage']
     except Exception, e:
         traceback.print_exc()
         log("parse_list fail: " + str(e))
+        return 0
 
 
 def get_attr(tag, attr):
@@ -78,7 +89,7 @@ def now_time():
 def save_to_db(item):
     while 1:
         try:
-            db['tianyancha_level0_' + time.strftime("%Y%m%d%H", time.localtime())].save(item)
+            db['gsxt_level0_' + time.strftime("%Y%m%d%H", time.localtime())].save(item)
             break
         except Exception, e:
             traceback.print_exc()
@@ -110,7 +121,7 @@ def change_ip():
     time.sleep(30)
 
 
-log_file = open('tianyancha_list_xcx.log', 'a')
+log_file = open('gsxt_list_xcx.log', 'a')
 
 
 def log(msg):
@@ -128,16 +139,17 @@ def insert_urls(key, urls):
     while True:
         try:
             data = {'new': urls}
-            resp = requests.post('http://118.24.176.167:1234/%s' % key, json=data, timeout=60)
+            resp = requests.post(url_server % key, json=data, timeout=60)
             return json.loads(resp.text)['msg'] == 'ok'
         except:
             time.sleep(3)
 
 
 def get_urls(key):
+    print 'get_urls...'
     while True:
         try:
-            resp = requests.get('http://118.24.176.167:1234/%s' % key, timeout=60)
+            resp = requests.get(url_server % key, timeout=60)
             return json.loads(resp.content)
         except:
             time.sleep(3)
@@ -146,8 +158,8 @@ def get_urls(key):
 def back_urls(key, succ_list, failed_list):
     while True:
         try:
-            data = {'success': succ_list, 'failed': failed_list}
-            resp = requests.post('http://118.24.176.167:1234/%s' % key, json=data, timeout=60)
+            data = {'success': list(succ_list), 'failed': list(failed_list)}
+            resp = requests.post(url_server % key, json=data, timeout=60)
             return json.loads(resp.content)
         except:
             time.sleep(3)
@@ -155,19 +167,21 @@ def back_urls(key, succ_list, failed_list):
 
 if __name__ == '__main__':
     init_db()
-    list_url_prefix = 'https://api9.tianyancha.com/services/v3/search/sNorV3/%s?pageNum=1&pageSize=10&sortType=0'
-    task_key = 'task_1711_lv0'
-    task_sublink_key = 'task_1711_lv1'
+    list_url_prefix = 'https://app.gsxt.gov.cn/gsxt/corp-query-app-search-1.html'
+    # url_server = 'http://118.24.176.167:1234/%s'
+    url_server = 'http://127.0.0.1:1234/%s'
+    task_key = 'gsxt_lv0'
+    task_sublink_key = 'gsxt_lv1'
     try:
         while True:
-            succ_list = []
-            failed_list = []
+            succ_list = set()
+            failed_list = set()
             urls = get_urls(task_key)
             if urls:
                 for line in urls:
                     link = line.encode('utf8')
                     if link:
-                        get_list(list_url_prefix % urllib.quote(link))
+                        get_list(list_url_prefix, link)
                 back_urls(task_key, succ_list, failed_list)
             else:
                 time.sleep(5 * 60)

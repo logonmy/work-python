@@ -29,7 +29,7 @@ class UrlProcess:
         self.rc = RedisClient(host=host).get_redis()
 
     def insert_urls(self, key, urls):
-        r = self.rc
+        r = self.rc.zrange()
         r.sadd(key + self.waiting_queue_postfix, *urls)
 
     def get_urls(self, key, count):

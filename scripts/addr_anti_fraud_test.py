@@ -139,7 +139,7 @@ if __name__ == '__main__':
     #     output_file = os.path.join(path, filename + '_output.' + file_postfix)
     #     client = SocketClient('10.82.244.24', 18430)
     #     in_encoding = out_encoding = 'GBK'
-    #     test()
-    #     test()
+    #     main()
+    #     # test()
     # else:
     #     print 'File not found: %s' % input_file

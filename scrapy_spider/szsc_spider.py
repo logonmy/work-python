@@ -18,9 +18,8 @@ class SzscSpider(scrapy.Spider):
 
     def parse(self, response):
         yield response.follow(response.url, callback=self.parse_list, dont_filter=True)
-        for sc in response.xpath('//li[@class="sliderNav"]/ul/li/a/@href'):
+        for sc in response.xpath('//li[@class="sliderTag"]/ul/li/a/@href'):
             yield response.follow(sc, callback=self.parse_list)
-
 
     def parse_list(self, response):
         c = len(response.css('li.list_name > div'))
@@ -41,7 +40,10 @@ class SzscSpider(scrapy.Spider):
             #     print 'xxxx'
             info['type'] = table.xpath('tr[2]/td[2]/text()').extract_first()
             info['attr'] = table.xpath('tr[3]/td[2]/text()').extract_first()
+            info['website'] = table.xpath('tr[4]/td[2]/text()').extract_first()
+            info['area'] = table.xpath('tr[4]/td[4]/text()').extract_first()
             info['address'] = table.xpath('tr[5]/td[2]/text()').extract_first()
+            info['phone'] = table.xpath('tr[5]/td[4]/text()').extract_first()
         yield response.follow(response.meta['ywxx'], callback=self.parse_ywxx, meta={'info': info})
 
     def parse_ywxx(self, response):
@@ -57,4 +59,4 @@ class SzscSpider(scrapy.Spider):
         return self.sub_ptn.sub('', item)
 
     def closed(self, reason):
-        print '总共==='+str(self.cnt)
+        print '总共===' + str(self.cnt)
